@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Bruno Souza, Software Developer especializado em produtos digitais robustos e interfaces que fazem sentido.">
+	<title>Bruno Souza | Desenvolvedor de Software</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+	<style>
+		:root {
+			--ink: #17201f;
+			--paper: #f4f1e9;
+			--paper-deep: #e7e3d8;
+			--acid: #9fbf13;
+			--coral: #612f28;
+			--muted: #6e7671;
+			--line: rgba(23, 32, 31, .17);
+			--mono: 'DM Mono', monospace;
+			--sans: 'Manrope', sans-serif;
+		}
+
+		* { box-sizing: border-box; }
+		html { scroll-behavior: smooth; }
+		body {
+			margin: 0;
+			color: var(--ink);
+			background: var(--paper);
+			font-family: var(--sans);
+			overflow-x: hidden;
+		}
+		body::before {
+			content: '';
+			position: fixed;
+			inset: 0;
+			pointer-events: none;
+			opacity: .18;
+			background-image: radial-gradient(rgba(23,32,31,.45) .6px, transparent .6px);
+			background-size: 7px 7px;
+			mix-blend-mode: multiply;
+			z-index: 10;
+		}
+		a { color: inherit; text-decoration: none; }
+		.wrap { width: min(1160px, calc(100% - 48px)); margin: 0 auto; }
+		.mono { font-family: var(--mono); font-size: .72rem; letter-spacing: .05em; text-transform: uppercase; }
+
+		header {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 28px 0;
+			border-bottom: 1px solid var(--line);
+		}
+		.brand { display: flex; gap: 10px; align-items: center; font-weight: 800; letter-spacing: -.04em; }
+		.brand-mark { width: 28px; height: 28px; display: grid; place-items: center; background: var(--acid); border-radius: 50%; font-family: var(--mono); font-size: .7rem; }
+		nav { display: flex; gap: 27px; color: var(--muted); font-size: .82rem; font-weight: 700; }
+		nav a { transition: color .2s ease; }
+		nav a:hover { color: var(--coral); }
+
+		.hero { min-height: 650px; display: grid; grid-template-columns: 1.08fr .92fr; align-items: center; gap: 50px; padding: 80px 0 98px; }
+		.kicker { display: flex; align-items: center; gap: 10px; color: var(--coral); margin-bottom: 22px; }
+		.kicker::before { content: ''; width: 36px; height: 2px; background: var(--coral); }
+		h1 { font-size: clamp(3.8rem, 8.8vw, 8.8rem); line-height: .86; letter-spacing: -.095em; margin: 0; max-width: 650px; }
+		h1 em { color: var(--coral); font-style: normal; }
+		.hero-copy { max-width: 360px; margin: 34px 0 0 9%; color: var(--muted); font-size: 1.05rem; line-height: 1.7; }
+		.hero-actions { display: flex; align-items: center; gap: 24px; margin: 29px 0 0 9%; }
+		.button { padding: 14px 21px; background: var(--ink); color: var(--paper); font-size: .75rem; font-family: var(--mono); text-transform: uppercase; transition: transform .2s ease, background .2s ease; }
+		.button:hover { background: var(--coral); transform: translateY(-3px); }
+		.text-link { font-size: .78rem; font-weight: 800; border-bottom: 1px solid var(--ink); padding-bottom: 4px; }
+		.portrait-frame { position: relative; width: min(100%, 420px); justify-self: end; }
+		.portrait-frame::before { content: ''; position: absolute; width: 92px; height: 92px; border: 2px solid var(--coral); right: -23px; top: -24px; z-index: -1; }
+		.portrait-frame::after { content: 'BRUNO / 2026'; position: absolute; right: -46px; bottom: 28px; writing-mode: vertical-rl; font: .68rem var(--mono); letter-spacing: .06em; }
+		.portrait { display: block; width: 100%; aspect-ratio: .82; object-fit: cover; filter: grayscale(100%); mix-blend-mode: multiply; }
+		.hero-stamp { position: absolute; left: -35px; bottom: -25px; display: grid; place-items: center; width: 116px; height: 116px; padding: 18px; text-align: center; border-radius: 50%; background: var(--acid); font: .66rem var(--mono); line-height: 1.5; transform: rotate(-13deg); }
+
+		section { padding: 104px 0; border-top: 1px solid var(--line); }
+		.section-head { display: grid; grid-template-columns: 180px 1fr; gap: 25px; margin-bottom: 55px; }
+		.section-label { color: var(--coral); padding-top: 8px; }
+		h2 { max-width: 670px; margin: 0; font-size: clamp(2.3rem, 5vw, 5.2rem); line-height: .94; letter-spacing: -.08em; }
+		.intro { max-width: 540px; margin: 22px 0 0; color: var(--muted); line-height: 1.65; }
+		.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); }
+		.service { min-height: 260px; padding: 25px 22px 24px 0; border-right: 1px solid var(--line); }
+		.service + .service { padding-left: 22px; }
+		.service:last-child { border-right: 0; }
+		.service-number { display: flex; justify-content: space-between; color: var(--coral); }
+		.service h3 { font-size: 1.4rem; letter-spacing: -.05em; margin: 73px 0 12px; }
+		.service p { color: var(--muted); font-size: .9rem; line-height: 1.6; max-width: 245px; margin: 0; }
+
+		.projects { background: var(--ink); color: var(--paper); }
+		.projects .section-label, .projects .intro { color: var(--acid); }
+		.project-list { display: grid; gap: 25px; }
+		.project { display: grid; grid-template-columns: 1.05fr .95fr; min-height: 320px; border-top: 1px solid rgba(244,241,233,.25); padding-top: 24px; }
+		.project-visual { position: relative; overflow: hidden; min-height: 280px; background: #aab8b2; }
+		.project-visual img { width: 100%; height: 100%; min-height: 280px; object-fit: cover; filter: saturate(.75); }
+		.project-tag { position: absolute; left: 16px; top: 16px; padding: 7px 9px; background: var(--acid); color: var(--ink); }
+		.project-detail { display: flex; flex-direction: column; justify-content: space-between; padding: 9px 0 15px 30px; }
+		.project h3 { font-size: clamp(1.8rem, 3.5vw, 3.8rem); line-height: .95; letter-spacing: -.07em; margin: 0; max-width: 390px; }
+		.project-detail p { color: rgba(244,241,233,.64); line-height: 1.65; max-width: 360px; }
+		.project-meta { display: flex; gap: 11px; color: var(--acid); }
+		.project-meta span { border: 1px solid rgba(207,239,69,.5); padding: 7px 9px; }
+
+		.tech-row { display: flex; flex-wrap: wrap; gap: 12px; max-width: 930px; }
+		.tech { padding: 15px 19px; border: 1px solid var(--line); font-size: 1.05rem; font-weight: 700; letter-spacing: -.04em; transition: background .2s ease, color .2s ease; }
+		.tech:hover { background: var(--coral); color: var(--paper); border-color: var(--coral); }
+		.contact { background: var(--acid); }
+		.contact-layout { display: grid; grid-template-columns: .9fr 1.1fr; gap: 100px; align-items: start; }
+		.contact h2 { font-size: clamp(3rem, 6vw, 6.7rem); }
+		.contact-note { margin-top: 30px; max-width: 290px; line-height: 1.6; }
+		form { display: grid; gap: 18px; }
+		label { font: .7rem var(--mono); text-transform: uppercase; }
+		input, textarea { display: block; width: 100%; margin-top: 8px; padding: 13px 0; border: 0; border-bottom: 1px solid rgba(23,32,31,.5); background: transparent; color: var(--ink); font: 1rem var(--sans); outline: none; }
+		textarea { min-height: 95px; resize: vertical; }
+		input:focus, textarea:focus { border-color: var(--coral); }
+		form .button { width: fit-content; border: 0; cursor: pointer; margin-top: 10px; }
+		#form-status { min-height: 22px; margin: 0; font: .72rem var(--mono); }
+		footer { padding: 28px 0; background: var(--ink); color: var(--paper); display: flex; justify-content: space-between; align-items: center; }
+		footer .wrap { display: flex; justify-content: space-between; align-items: center; }
+		.socials { display: flex; gap: 20px; color: var(--acid); font: .7rem var(--mono); }
+
+		@media (max-width: 760px) {
+			.wrap { width: min(100% - 32px, 560px); }
+			header { padding: 20px 0; } nav { gap: 12px; font-size: .68rem; } nav a:nth-child(3) { display: none; }
+			.hero { display: flex; flex-direction: column; align-items: flex-start; gap: 62px; padding: 70px 0 90px; min-height: 0; }
+			h1 { font-size: clamp(4rem, 20vw, 7rem); } .hero-copy, .hero-actions { margin-left: 0; }
+			h1 { font-size: clamp(3.8rem, 8.8vw, 8.8rem); line-height: .86; letter-spacing: -.095em; margin: 0; max-width: 650px; }
+			.portrait-frame { width: 78%; align-self: flex-end; } .hero-stamp { left: -22px; }
+			section { padding: 75px 0; } .section-head { display: block; margin-bottom: 38px; } .section-label { margin-bottom: 24px; }
+			.services-grid { display: block; } .service, .service + .service { min-height: auto; padding: 22px 0; border-right: 0; border-bottom: 1px solid var(--line); }
+			.service h3 { margin: 35px 0 10px; }
+			.project { display: block; } .project-detail { padding: 26px 0 0; gap: 28px; } .project-detail p { margin: 0; }
+			.contact-layout { display: block; } .contact-note { margin-bottom: 52px; } footer .wrap { align-items: flex-start; gap: 22px; flex-direction: column; }
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<header>
+			<a class="brand" href="#top"><span class="brand-mark">BS</span> Bruno Souza</a>
+			<nav aria-label="Navegação principal">
+				<a href="#sobre">Sobre</a><a href="#servicos">Serviços</a><a href="#projetos">Projetos</a><a href="#tecnologias">Tecnologias</a><a href="#contato">Contato</a>
+			</nav>
+		</header>
+
+		<main id="top">
+			<section class="hero" aria-labelledby="hero-title">
+				<div>
+					<div class="kicker mono">desenvolvedor de software</div>
+					<h1 id="hero-title">Ajudando<br><em>na sua Jornada </em></h1>
+					<p class="hero-copy">Projeto e desenvolvo produtos digitais claros, rápidos e prontos para crescer.</p>
+					<div class="hero-actions"><a class="button" href="#projetos">Ver projetos</a><a class="text-link" href="#contato">Vamos conversar ↗</a></div>
+				</div>
+				<div class="portrait-frame"><img class="portrait" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=85" alt="Pessoa trabalhando em um notebook em uma mesa de trabalho"><div class="hero-stamp">SUAS IDEIAS<br>EM<br>PRODUÇÃO<br>✳</div></div>
+			</section>
+
+			<section id="sobre" aria-labelledby="about-title">
+				<div class="section-head"><div class="section-label mono">01 / Sobre</div><div><h2 id="about-title">Por trás de cada tela, existe um problema bem entendido.</h2><p class="intro">Sou Bruno, desenvolvedor focado em transformar necessidades complexas em software simples de usar. Trabalho entre produto, código e pessoas para colocar boas ideias em movimento.</p></div></div>
+			</section>
+
+			<section id="servicos" aria-labelledby="services-title">
+				<div class="section-head"><div class="section-label mono">02 / serviços</div><div><h2 id="services-title">Da primeira atualcommit ao próximo salto.</h2></div></div>
+				<div class="services-grid">
+					<article class="service"><div class="service-number mono"><span>01</span><span>↗</span></div><h3>Desenvolvimento</h3><p>Aplicações, responsivas e com uma experiência que as pessoas entendem de primeira.</p></article>
+					<article class="service"><div class="service-number mono"><span>02</span><span>↗</span></div><h3>APIs & integrações</h3><p>Serviços bem estruturados que conectam sistemas, dados e operações sem atrito.</p></article>
+					<article class="service"><div class="service-number mono"><span>03</span><span>↗</span></div><h3>Evolução de produto</h3><p>Leitura técnica, decisões práticas e melhorias contínuas para produtos que já estão no mundo.</p></article>
+				</div>
+			</section>
+
+			<section class="projects" id="projetos" aria-labelledby="projects-title">
+				<div class="wrap">
+					<div class="section-head"><div class="section-label mono">03 / projetos</div><div><h2 id="projects-title">Algumas coisas que ganharam forma.</h2><p class="intro">Projetos demonstrativos que juntam arquitetura, interface e atenção aos detalhes.</p></div></div>
+					<div class="project-list">
+						<article class="project"><div class="project-visual"><img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1100&q=85" alt="Equipe reunida em torno de uma mesa"><span class="project-tag mono">Exemplo / 01</span></div><div class="project-detail"><h3>Fit<br>Vagas</h3><p>Uma plataforma de visão financeira para pequenas empresas tomarem decisões com dados, não com suposições.</p><div class="project-meta mono"><span>.NET</span><span>IA</span></div></div></article>
+						<article class="project"><div class="project-visual"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1100&q=85" alt="Gráficos de análise em um computador"><span class="project-tag mono">Exemplo / 02</span></div><div class="project-detail"><h3>De-para<br>Migração</h3><p>Dashboard operacional que transforma sinais espalhados em uma leitura acionável da operação.</p><div class="project-meta mono"><span>Python</span><span>SQL</span><span>Excel</span></div></div></article>
+					</div>
+				</div>
+			</section>
+
+			<section id="tecnologias" aria-labelledby="tech-title"><div class="section-head"><div class="section-label mono">04 / tecnologias</div><div><h2 id="tech-title">As ferramentas mudam.<br>O critério fica.</h2></div></div><div class="tech-row"><span class="tech">C#</span><span class="tech">.NET</span><span class="tech">PHP</span><span class="tech">SQL</span><span class="tech">APIs REST</span><span class="tech">Azure</span><span class="tech">Git</span><span class="tech">Vercel</span></div></section>
+
+			<section class="contact" id="contato" aria-labelledby="contact-title"><div class="contact-layout"><div><div class="section-label mono">05 / contato</div><h2 id="contact-title">Tem algo em mente?</h2><p class="contact-note">Conte um pouco sobre o desafio. Eu respondo com calma e sem discurso pronto.</p></div><form id="contact-form"><label>Seu nome<input type="text" name="name" required autocomplete="name"></label><label>Seu e-mail<input type="email" name="email" required autocomplete="email"></label><label>Como posso ajudar?<textarea name="message" required></textarea></label><button class="button" type="submit">Enviar mensagem ↗</button><p id="form-status" role="status"></p></form></div></section>
+		</main>
+	</div>
+	<footer><div class="wrap"><span class="mono">© 2026 Bruno Souza</span><div class="socials"><a href="https://github.com/BrunoApSouza" target="_blank" rel="noreferrer">GitHub ↗</a><a href="https://linkedin.com" target="_blank" rel="noreferrer">LinkedIn ↗</a></div></div></footer>
+	<script>
+		document.getElementById('contact-form').addEventListener('submit', function (event) {
+			event.preventDefault();
+			document.getElementById('form-status').textContent = 'Mensagem pronta para ser enviada. Obrigado!';
+			this.reset();
+		});
+	</script>
+</body>
+</html>

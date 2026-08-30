@@ -158,7 +158,7 @@
 			</section>
 
 			<section id="servicos" aria-labelledby="services-title">
-				<div class="section-head"><div class="section-label mono">02 / serviços</div><div><h2 id="services-title">Da primeira atualcommit ao próximo salto.</h2></div></div>
+				<div class="section-head"><div class="section-label mono">02 / serviços</div><div><h2 id="services-title">Da primeira versão ao próximo nível do seu negócio</h2></div></div>
 				<div class="services-grid">
 					<article class="service"><div class="service-number mono"><span>01</span><span>↗</span></div><h3>Desenvolvimento</h3><p>Aplicações, responsivas e com uma experiência que as pessoas entendem de primeira.</p></article>
 					<article class="service"><div class="service-number mono"><span>02</span><span>↗</span></div><h3>APIs & integrações</h3><p>Serviços bem estruturados que conectam sistemas, dados e operações sem atrito.</p></article>
@@ -178,15 +178,35 @@
 
 			<section id="tecnologias" aria-labelledby="tech-title"><div class="section-head"><div class="section-label mono">04 / tecnologias</div><div><h2 id="tech-title">As ferramentas mudam.<br>O critério fica.</h2></div></div><div class="tech-row"><span class="tech">C#</span><span class="tech">.NET</span><span class="tech">PHP</span><span class="tech">SQL</span><span class="tech">APIs REST</span><span class="tech">Azure</span><span class="tech">Git</span><span class="tech">Vercel</span></div></section>
 
-			<section class="contact" id="contato" aria-labelledby="contact-title"><div class="contact-layout"><div><div class="section-label mono">05 / contato</div><h2 id="contact-title">Tem algo em mente?</h2><p class="contact-note">Conte um pouco sobre o desafio. Eu respondo com calma e sem discurso pronto.</p></div><form id="contact-form"><label>Seu nome<input type="text" name="name" required autocomplete="name"></label><label>Seu e-mail<input type="email" name="email" required autocomplete="email"></label><label>Como posso ajudar?<textarea name="message" required></textarea></label><button class="button" type="submit">Enviar mensagem ↗</button><p id="form-status" role="status"></p></form></div></section>
+			<section class="contact" id="contato" aria-labelledby="contact-title"><div class="contact-layout"><div><div class="section-label mono">05 / contato</div><h2 id="contact-title">Tem algo em mente?</h2><p class="contact-note">Conte um pouco sobre o desafio. Eu respondo com calma e sem discurso pronto.</p></div><form action="https://formspree.io/f/mrpgbjdk" method="POST" id="contact-form"><label>Seu nome<input type="text" name="name" required autocomplete="name"></label><label>Seu e-mail<input type="email" name="email" required autocomplete="email"></label><label>Como posso ajudar?<textarea name="message" required></textarea></label><button class="button" type="submit">Enviar mensagem ↗</button><p id="form-status" role="status"></p></form></div></section>
 		</main>
 	</div>
-	<footer><div class="wrap"><span class="mono">© 2026 Bruno Souza</span><div class="socials"><a href="https://github.com/BrunoApSouza" target="_blank" rel="noreferrer">GitHub ↗</a><a href="https://linkedin.com" target="_blank" rel="noreferrer">LinkedIn ↗</a></div></div></footer>
+	<footer><div class="wrap"><span class="mono">© 2026 Bruno Souza</span><div class="socials"><a href="https://github.com/BrunoApSouza" target="_blank" rel="noreferrer">GitHub ↗</a></div></div></footer>
 	<script>
 		document.getElementById('contact-form').addEventListener('submit', function (event) {
 			event.preventDefault();
-			document.getElementById('form-status').textContent = 'Mensagem pronta para ser enviada. Obrigado!';
-			this.reset();
+			const form = event.target;
+			const status = document.getElementById('form-status');
+			const data = new FormData(form);
+
+			status.textContent = 'Enviando...';
+
+			fetch(form.action, {
+				method: 'POST',
+				body: data,
+				headers: { 'Accept': 'application/json' }
+			})
+			.then(response => {
+				if (response.ok) {
+					status.textContent = 'Mensagem enviada com sucesso. Obrigado!';
+					form.reset();
+				} else {
+					status.textContent = 'Ops, algo deu errado. Tenta de novo.';
+				}
+			})
+			.catch(() => {
+				status.textContent = 'Ops, algo deu errado. Tenta de novo.';
+			});
 		});
 	</script>
 </body>
